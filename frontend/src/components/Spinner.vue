@@ -67,20 +67,24 @@ export default {
   inset: 0;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: var(--accent);
+  border-top-color: var(--text);
   animation: spin 1s linear infinite;
 }
 
 .spinner-ring--2 {
   inset: 6px;
-  border-top-color: var(--accent-2);
+  border-top-color: var(--text-muted);
   animation-duration: 0.7s;
   animation-direction: reverse;
+  animation-name: spin;
 }
 
 .spinner-message {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   text-align: center;
   animation: pulse 1.5s ease infinite;
 }
@@ -91,6 +95,6 @@ export default {
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0.5; }
 }
 </style>
