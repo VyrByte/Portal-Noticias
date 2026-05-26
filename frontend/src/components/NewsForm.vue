@@ -14,7 +14,8 @@
           @blur="validateField('title')"
         />
         <span v-if="errors.title" class="form-error" id="error-title">
-          ⚠ {{ errors.title }}
+          <svg class="err-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          {{ errors.title }}
         </span>
       </div>
 
@@ -32,7 +33,8 @@
         ></textarea>
         <div class="form-footer-row">
           <span v-if="errors.description" class="form-error" id="error-description">
-            ⚠ {{ errors.description }}
+            <svg class="err-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            {{ errors.description }}
           </span>
           <span class="char-count" :class="{ 'char-count--warn': form.description.length > 280 }">
             {{ form.description.length }}/300
@@ -68,7 +70,8 @@
           </option>
         </select>
         <span v-if="errors.category" class="form-error" id="error-category">
-          ⚠ {{ errors.category }}
+          <svg class="err-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          {{ errors.category }}
         </span>
       </div>
 
@@ -97,7 +100,8 @@
           @blur="validateField('image')"
         />
         <span v-if="errors.image" class="form-error" id="error-image">
-          ⚠ {{ errors.image }}
+          <svg class="err-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          {{ errors.image }}
         </span>
       </div>
 
@@ -156,7 +160,10 @@
         :disabled="isSubmitting"
       >
         <span v-if="isSubmitting">⏳ Guardando...</span>
-        <span v-else>{{ isEditing ? '✏️ Actualizar' : '✅ Guardar Noticia' }}</span>
+        <span v-else>
+          <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white; margin-right: 0.25rem;"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          {{ isEditing ? 'Actualizar' : 'Guardar Noticia' }}
+        </span>
       </button>
     </div>
   </form>
@@ -188,13 +195,13 @@ export default {
       errors: {},
       imagePreviewError: false,
       categories: [
-        { value: 'tecnologia',      label: '💻 Tecnología' },
-        { value: 'ciencia',         label: '🔬 Ciencia' },
-        { value: 'deportes',        label: '⚽ Deportes' },
-        { value: 'negocios',        label: '💼 Negocios' },
-        { value: 'salud',           label: '🏥 Salud' },
-        { value: 'entretenimiento', label: '🎬 Entretenimiento' },
-        { value: 'general',         label: '📰 General' }
+        { value: 'tecnologia',      label: 'Tecnología' },
+        { value: 'ciencia',         label: 'Ciencia' },
+        { value: 'deportes',        label: 'Deportes' },
+        { value: 'negocios',        label: 'Negocios' },
+        { value: 'salud',           label: 'Salud' },
+        { value: 'entretenimiento', label: 'Entretenimiento' },
+        { value: 'general',         label: 'General' }
       ]
     }
   },
@@ -319,6 +326,11 @@ export default {
 
 .char-count--warn {
   color: #c53030;
+}
+
+.err-svg-icon {
+  margin-right: 0.2rem;
+  vertical-align: middle;
 }
 
 /* Image preview */
