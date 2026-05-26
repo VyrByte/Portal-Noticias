@@ -133,7 +133,6 @@ export default {
   },
 
   created() {
-    // Si viene query desde la URL
     const { q } = this.$route.query
     if (q) {
       this.query = q
@@ -153,10 +152,9 @@ export default {
       }
 
       this.searching = true
-      this.searchNews(q) // guarda en Vuex + LocalStorage
+      this.searchNews(q)
 
       try {
-        // Primero busca en el store local (más rápido)
         const localResults = this.news.filter(({ title = '', description = '' }) =>
           title.toLowerCase().includes(q.toLowerCase()) ||
           description.toLowerCase().includes(q.toLowerCase())
@@ -165,7 +163,6 @@ export default {
         if (localResults.length > 0) {
           this.results = localResults
         } else {
-          // Si no hay resultados locales, consulta la API
           const { articles } = await searchNewsFromAPI(q)
           this.results = articles
         }
@@ -215,18 +212,19 @@ export default {
 <style scoped>
 .search-header {
   text-align: center;
-  padding: 2rem 0 1.5rem;
-  animation: fadeInUp 0.5s ease;
+  padding: 2.5rem 0 1.5rem;
+  animation: fadeInUp 0.4s ease;
 }
 
 .search-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 0.5rem;
 }
 
 .search-subtitle {
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .search-section {
@@ -234,7 +232,7 @@ export default {
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 2.5rem;
-  animation: fadeInUp 0.5s 0.1s ease both;
+  animation: fadeInUp 0.4s 0.1s ease both;
 }
 
 /* Quick tags */
@@ -245,13 +243,15 @@ export default {
 }
 
 .quick-tag {
-  padding: 0.4rem 0.9rem;
+  padding: 0.35rem 0.85rem;
   background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
   transition: all var(--transition);
@@ -260,12 +260,13 @@ export default {
 .quick-tag:hover {
   background: var(--surface-3);
   color: var(--text);
+  border-color: var(--border);
 }
 
 .quick-tag--active {
-  background: rgba(124, 107, 255, 0.15);
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--text) !important;
+  border-color: var(--text) !important;
+  color: white !important;
 }
 
 /* Results header */
@@ -274,8 +275,12 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-muted);
+  padding-bottom: 0.5rem;
 }
 
 /* No results */
@@ -294,12 +299,14 @@ export default {
 }
 
 .no-results h3 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.25rem;
   color: var(--text);
 }
 
 .no-results p {
   color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
 .suggestions {
@@ -312,13 +319,15 @@ export default {
 }
 
 .suggestions-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--text-muted);
 }
 
 /* Explore state */
 .search-empty-state {
-  animation: fadeInUp 0.5s 0.2s ease both;
+  animation: fadeInUp 0.4s 0.2s ease both;
   text-align: center;
 }
 
@@ -331,8 +340,8 @@ export default {
 
 .explore-card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
@@ -344,25 +353,28 @@ export default {
 }
 
 .explore-card:hover {
-  border-color: var(--accent);
-  background: rgba(124, 107, 255, 0.08);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--border);
+  background: var(--surface-2);
 }
 
 .explore-emoji {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .explore-label {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--text);
 }
 
 .explore-hint {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-align: center;
 }
 </style>
