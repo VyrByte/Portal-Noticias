@@ -1,6 +1,6 @@
 # Noticias Wicho — Proyecto Final
 
-Un portal de noticias completo e interactivo bajo la marca **Noticias Wicho**, desarrollado como proyecto final de la materia Programación Profesional. El proyecto cuenta con un diseño editorial de alta gama en formato blanco y negro (estilo periódico tradicional *The New York Times*) y está implementado con Vue 3 para el cliente y JSON Server para el backend.
+Un portal de noticias completo e interactivo "**Noticias Wicho**", desarrollado como proyecto final de la materia Programación FrontEnd. El proyecto cuenta con un diseño editorial de alta gama en formato blanco y negro (estilo periódico tradicional *The New York Times*) y está implementado con Vue 3 para el cliente y JSON Server para el backend.
 
 Tanto el FrontEnd como el BackEnd comparten el mismo lenguaje de desarrollo (JavaScript).
 
