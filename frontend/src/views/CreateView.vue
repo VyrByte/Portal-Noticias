@@ -7,7 +7,11 @@
       </button>
       <div class="create-header-text">
         <h1 class="create-title">
-          {{ isEditing ? '✏️ Editar Noticia' : '📝 Nueva Noticia' }}
+          <svg class="header-svg-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          {{ isEditing ? 'Editar Noticia' : 'Nueva Noticia' }}
         </h1>
         <p class="create-subtitle">
           {{ isEditing
@@ -31,7 +35,12 @@
         <!-- Indicador de pasos -->
         <div class="form-step-indicator">
           <div class="step-info">
-            <span class="step-icon">{{ isEditing ? '✏️' : '📝' }}</span>
+            <span class="step-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+              </svg>
+            </span>
             <div>
               <div class="step-title">{{ isEditing ? 'Editando favorito' : 'Creando nueva noticia' }}</div>
               <div class="step-desc">Los campos marcados con * son obligatorios</div>
@@ -51,7 +60,14 @@
       <!-- Panel lateral de tips -->
       <aside class="create-tips">
         <div class="tips-card">
-          <h3 class="tips-title">💡 Consejos</h3>
+          <h3 class="tips-title">
+            <svg class="tips-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A7 7 0 0 0 4 8c0 1.3.5 2.6 1.5 3.5.7.8 1.3 1.5 1.5 2.5"/>
+              <path d="M9 18h6"/>
+              <path d="M10 22h4"/>
+            </svg>
+            Consejos
+          </h3>
           <ul class="tips-list">
             <li v-for="(tip, i) in tips" :key="i" class="tip-item">
               <span class="tip-dot"></span>
@@ -61,7 +77,14 @@
         </div>
 
         <div class="tips-card tips-card--alt" v-if="isEditing">
-          <h3 class="tips-title">ℹ️ Información</h3>
+          <h3 class="tips-title">
+            <svg class="tips-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+            Información
+          </h3>
           <div class="info-row" v-if="formInitialData">
             <span class="info-label">Creado</span>
             <span class="info-value">{{ formatDate(formInitialData.createdAt) }}</span>
@@ -151,16 +174,16 @@ export default {
         if (this.isEditing) {
           const { id } = this.formInitialData
           await this.editFavorite({ id, ...formData })
-          this.showToast('¡Noticia actualizada correctamente! ✅', 'success')
+          this.showToast('Noticia actualizada correctamente', 'success')
           setTimeout(() => this.$router.push('/favorites'), 1500)
         } else {
           await this.addFavorite({ ...formData })
-          this.showToast('¡Noticia guardada en favoritos! ⭐', 'success')
+          this.showToast('Noticia guardada en favoritos', 'success')
           setTimeout(() => this.$router.push('/favorites'), 1500)
         }
         await this.fetchFavorites()
       } catch {
-        this.showToast('Error al guardar la noticia. ¿Está corriendo el servidor?', 'error')
+        this.showToast('Error al guardar la noticia', 'error')
       } finally {
         this.submitting = false
       }
@@ -204,6 +227,13 @@ export default {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.header-svg-icon {
+  stroke-width: 2.5px;
 }
 
 .create-subtitle {
@@ -286,6 +316,13 @@ export default {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.tips-svg-icon {
+  stroke-width: 2px;
 }
 
 .tips-list {
