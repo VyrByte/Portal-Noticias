@@ -107,7 +107,6 @@ export default {
     ...mapState(['news', 'loading', 'error', 'selectedCategory']),
     ...mapGetters(['isFavorite']),
 
-    // Desestructuración: separa el primer artículo del resto
     featuredArticle() {
       const [first] = this.news
       return first || null
@@ -133,11 +132,9 @@ export default {
   },
 
   mounted() {
-    // Solo carga si no hay noticias ya en el store
     if (this.news.length === 0) {
       this.fetchNews()
     }
-    // Carga favoritos para el badge del navbar
     this.fetchFavorites()
   },
 
@@ -151,7 +148,6 @@ export default {
     async handleToggleFavorite(article) {
       try {
         if (this.isFavorite(article.title)) {
-          // Busca el favorito y lo elimina
           await this.$store.dispatch('fetchFavorites')
           const existing = this.$store.state.favorites.find(f => f.title === article.title)
           if (existing) {
@@ -159,7 +155,6 @@ export default {
             this.showToast('Quitado de favoritos', 'info')
           }
         } else {
-          // Spread para agregar campos extra
           await this.addFavorite({
             ...article,
             source: typeof article.source === 'object' ? article.source.name : article.source
@@ -183,51 +178,51 @@ export default {
 /* Hero */
 .home-hero {
   text-align: center;
-  padding: 3rem 0 2rem;
-  animation: fadeInUp 0.6s ease;
+  padding: 2.5rem 0 1.5rem;
+  animation: fadeInUp 0.4s ease;
 }
 
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: rgba(124, 107, 255, 0.15);
-  border: 1px solid rgba(124, 107, 255, 0.3);
-  color: var(--accent);
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 1.25rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
 }
 
 .hero-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2rem, 5vw, 3.2rem);
   color: var(--text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   line-height: 1.15;
 }
 
 .hero-title-accent {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .hero-subtitle {
-  font-size: 1.05rem;
-  color: var(--text-secondary);
+  font-size: 0.95rem;
+  color: var(--text-muted);
   max-width: 500px;
   margin: 0 auto;
 }
 
 /* Filtros */
 .home-filters {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 /* Notice */
@@ -235,17 +230,19 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .notice-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--accent-3);
-  animation: pulse 1.5s ease infinite;
+  background: var(--text);
 }
 
 /* Noticia destacada */
@@ -259,27 +256,30 @@ export default {
 
 /* Sección de noticias */
 .news-section {
-  animation: fadeInUp 0.5s 0.2s ease both;
+  animation: fadeInUp 0.4s 0.1s ease both;
 }
 
 .section-title {
-  font-size: 1.25rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text);
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .section-count {
   background: var(--surface-2);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-muted);
   color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
 }
 
 /* Empty state */
@@ -287,7 +287,7 @@ export default {
   text-align: center;
   padding: 3rem;
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -298,34 +298,29 @@ export default {
   font-size: 2.5rem;
 }
 
-/* Toast */
+/* Toast monocromático clásico */
 .toast {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  padding: 0.85rem 1.5rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.9rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   z-index: 9999;
-  box-shadow: var(--shadow-lg);
-}
-
-.toast--success {
-  background: linear-gradient(135deg, #00d4a8, #00b894);
-  color: white;
-}
-
-.toast--info {
-  background: linear-gradient(135deg, var(--accent), #9580ff);
-  color: white;
+  box-shadow: var(--shadow-md);
+  background: #ffffff;
+  color: var(--text);
 }
 
 .toast--error {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
+  color: #c53030;
+  border-color: #c53030;
 }
 
-.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
-.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(12px); }
+.toast-enter-active, .toast-leave-active { transition: all 0.2s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(8px); }
 </style>
