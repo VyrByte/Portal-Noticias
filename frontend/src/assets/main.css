@@ -1,54 +1,55 @@
 /* =============================================
-   Portal de Noticias — Global Styles
-   Dark Premium Design System
+   Portal de Noticias — Estilos Globales
+   Estilo Editorial "The New York Times" (Monocromático)
    ============================================= */
 
-/* --- Variables CSS --- */
+/* --- Variables de Diseño --- */
 :root {
-  /* Colores base */
-  --bg: #09090f;
-  --surface-1: #0f0f1a;
-  --surface-2: #141420;
-  --surface-3: #1a1a2e;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  /* Colores Base (Tinta sobre Papel) */
+  --bg: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #f6f6f5; /* Tono cálido suave */
+  --surface-3: #e8e8e7;
+  --border: #121212; /* Borde editorial sólido negro */
+  --border-muted: #dcdcdc; /* Borde gris fino tradicional */
+  --border-hover: #121212;
 
   /* Texto */
-  --text: #f0f0f8;
-  --text-secondary: #a0a0c0;
-  --text-muted: #606080;
+  --text: #121212; /* Negro de alta legibilidad */
+  --text-secondary: #2d2d2d;
+  --text-muted: #555555;
 
   /* Acentos */
-  --accent: #7c6bff;
-  --accent-hover: #9580ff;
-  --accent-glow: rgba(124, 107, 255, 0.3);
-  --accent-2: #ff6b9d;
-  --accent-3: #00d4a8;
+  --accent: #121212; /* Monocromático serio */
+  --accent-hover: #333333;
+  --accent-glow: rgba(18, 18, 18, 0.05);
+  --accent-2: #1b365d; /* Azul marino editorial clásico (opcional) */
+  --accent-3: #555555;
 
-  /* Categorías */
-  --cat-tecnologia: #7c6bff;
-  --cat-ciencia: #00d4a8;
-  --cat-deportes: #ff6b4a;
-  --cat-negocios: #ffd166;
-  --cat-salud: #ff6b9d;
-  --cat-entretenimiento: #a78bfa;
-  --cat-general: #60a5fa;
+  /* Categorías (Monocromáticas elegantes) */
+  --cat-tecnologia: #121212;
+  --cat-ciencia: #121212;
+  --cat-deportes: #121212;
+  --cat-negocios: #121212;
+  --cat-salud: #121212;
+  --cat-entretenimiento: #121212;
+  --cat-general: #121212;
 
-  /* Espaciado */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
+  /* Espaciado clásico de diario (Esquinas más cuadradas y serias) */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
 
-  /* Sombras */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-accent: 0 8px 32px var(--accent-glow);
+  /* Sombras planas (Estilo impreso) */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-accent: none;
 
   /* Transiciones */
-  --transition: 0.25s ease;
-  --transition-slow: 0.4s ease;
+  --transition: 0.2s ease;
+  --transition-slow: 0.3s ease;
 }
 
 /* --- Reset y Base --- */
@@ -63,64 +64,77 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background-color: var(--bg);
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.62;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar personalizado */
+/* Scrollbar plano */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--surface-1);
+  background: var(--surface-2);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--surface-3);
-  border-radius: 4px;
+  background: var(--border-muted);
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
 
-/* --- Tipografía --- */
+/* --- Tipografía Editorial --- */
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
-h3 { font-size: clamp(1.2rem, 2vw, 1.75rem); }
+h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.7rem); }
 
 p {
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color var(--transition);
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: all var(--transition);
 }
 
 a:hover {
   color: var(--accent-hover);
+  text-decoration-thickness: 2px;
 }
 
 img {
   max-width: 100%;
   display: block;
+  filter: grayscale(15%); /* Sutil desaturación para estilo editorial elegante */
+  transition: filter var(--transition);
+}
+
+img:hover {
+  filter: grayscale(0%);
 }
 
 /* --- Layout --- */
@@ -136,123 +150,133 @@ img {
   margin: 0 auto;
 }
 
-/* --- Botones --- */
+/* Reglas Horizontales Tradicionales (Separadores de Diario) */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border-muted);
+  margin: 1.5rem 0;
+}
+
+.divider-double {
+  border: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  height: 4px;
+  margin: 2rem 0;
+}
+
+/* --- Botones Editorial (Planos y Serios) --- */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.4rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
   font-weight: 600;
   font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: all var(--transition);
-  border: none;
-  outline: none;
+  border: 1px solid var(--border);
   text-decoration: none;
   white-space: nowrap;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #9580ff);
-  color: white;
-  box-shadow: var(--shadow-accent);
+  background: var(--accent);
+  color: #ffffff;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px var(--accent-glow);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 .btn-secondary {
-  background: var(--surface-2);
+  background: #ffffff;
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-muted);
 }
 
 .btn-secondary:hover {
-  background: var(--surface-3);
-  border-color: var(--border-hover);
+  background: var(--surface-2);
+  border-color: var(--border);
 }
 
 .btn-danger {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  background: #ffffff;
+  color: #c53030;
+  border: 1px solid #c53030;
 }
 
 .btn-danger:hover {
-  background: rgba(239, 68, 68, 0.25);
-  border-color: rgba(239, 68, 68, 0.5);
+  background: #fff5f5;
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--text-secondary);
   border: 1px solid transparent;
+  text-decoration: none;
 }
 
 .btn-ghost:hover {
   background: var(--surface-2);
   color: var(--text);
-  border-color: var(--border);
+  border-color: var(--border-muted);
 }
 
 .btn-sm {
-  padding: 0.45rem 1rem;
-  font-size: 0.82rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.78rem;
 }
 
 .btn-lg {
-  padding: 0.9rem 2rem;
-  font-size: 1rem;
+  padding: 0.85rem 1.8rem;
+  font-size: 0.95rem;
 }
 
-/* --- Cards --- */
+/* --- Tarjetas Estilo Columna --- */
 .card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   transition: all var(--transition);
 }
 
 .card:hover {
-  border-color: var(--border-hover);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
-/* --- Inputs --- */
+/* --- Formularios Clásicos --- */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .form-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 }
 
 .form-input,
 .form-select,
 .form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  background: #ffffff;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
   transition: all var(--transition);
   outline: none;
@@ -261,21 +285,19 @@ img {
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
-  background: var(--surface-3);
+  border-color: var(--border);
+  background: #ffffff;
 }
 
 .form-input.error,
 .form-select.error,
 .form-textarea.error {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  border-color: #c53030;
 }
 
 .form-error {
-  font-size: 0.82rem;
-  color: #ef4444;
+  font-size: 0.8rem;
+  color: #c53030;
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -288,43 +310,45 @@ img {
 
 .form-select {
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a0a0c0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23121212' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
+  background-position: right 0.8rem center;
+  padding-right: 2.2rem;
   cursor: pointer;
 }
 
-.form-select option {
-  background: var(--surface-2);
-  color: var(--text);
-}
-
-/* --- Badges de categoría --- */
+/* --- Insignias Categorías (Borde Impreso) --- */
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  background: #ffffff;
 }
 
-.badge-tecnologia  { background: rgba(124,107,255,0.15); color: var(--cat-tecnologia); }
-.badge-ciencia     { background: rgba(0,212,168,0.15);   color: var(--cat-ciencia); }
-.badge-deportes    { background: rgba(255,107,74,0.15);  color: var(--cat-deportes); }
-.badge-negocios    { background: rgba(255,209,102,0.15); color: var(--cat-negocios); }
-.badge-salud       { background: rgba(255,107,157,0.15); color: var(--cat-salud); }
-.badge-entretenimiento { background: rgba(167,139,250,0.15); color: var(--cat-entretenimiento); }
-.badge-general     { background: rgba(96,165,250,0.15);  color: var(--cat-general); }
+.badge-tecnologia,
+.badge-ciencia,
+.badge-deportes,
+.badge-negocios,
+.badge-salud,
+.badge-entretenimiento,
+.badge-general {
+  background: #ffffff;
+  color: var(--text);
+  border-color: var(--border);
+}
 
-/* --- Grid de noticias --- */
+/* --- Grid de Noticias --- */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 /* --- Utilitarios --- */
@@ -344,11 +368,11 @@ img {
 .mb-4        { margin-bottom: 2rem; }
 .w-full      { width: 100%; }
 
-/* --- Animaciones --- */
+/* --- Animaciones Suaves --- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -363,7 +387,7 @@ img {
 
 @keyframes pulse {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
+  50%       { opacity: 0.5; }
 }
 
 @keyframes spin {
@@ -371,42 +395,27 @@ img {
   to   { transform: rotate(360deg); }
 }
 
-@keyframes shimmer {
-  0%   { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
-}
-
 .animate-fade-up {
-  animation: fadeInUp 0.5s ease forwards;
+  animation: fadeInUp 0.4s ease forwards;
 }
 
 .animate-fade {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.3s ease forwards;
 }
 
-/* --- Glow decorativo de fondo --- */
-body::before {
-  content: '';
-  position: fixed;
-  top: -50%;
-  left: -20%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(ellipse, rgba(124, 107, 255, 0.06) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+/* --- Cabecera de Página (Estilo Sección Diario) --- */
+.section-header-block {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  bottom: -30%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(ellipse, rgba(0, 212, 168, 0.04) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+.section-header-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
 }
 
 /* --- Responsive --- */
@@ -417,12 +426,6 @@ body::after {
 
   .news-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .btn-lg {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.95rem;
+    gap: 1.5rem;
   }
 }
