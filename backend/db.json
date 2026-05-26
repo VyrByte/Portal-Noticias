@@ -1,0 +1,28 @@
+{
+  "favorites": [
+    {
+      "id": 1,
+      "title": "Vue.js 3 lanza nueva versión con mejoras de rendimiento",
+      "description": "El popular framework de JavaScript Vue.js ha lanzado una nueva actualización que mejora significativamente el rendimiento en aplicaciones de gran escala.",
+      "content": "Vue.js continúa siendo uno de los frameworks más populares del ecosistema JavaScript. Su arquitectura basada en componentes y su reactividad lo hacen ideal para construir interfaces modernas.",
+      "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80",
+      "source": "TechNews",
+      "category": "tecnologia",
+      "url": "https://vuejs.org",
+      "publishedAt": "2026-05-25T10:00:00Z",
+      "author": "Equipo Vue.js"
+    },
+    {
+      "id": 2,
+      "title": "Inteligencia Artificial transforma la industria del software",
+      "description": "Las herramientas de IA generativa están cambiando radicalmente cómo los desarrolladores escriben y mantienen código.",
+      "content": "Desde GitHub Copilot hasta ChatGPT, las herramientas de inteligencia artificial han transformado el flujo de trabajo de millones de desarrolladores alrededor del mundo.",
+      "image": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80",
+      "source": "Dev Weekly",
+      "category": "tecnologia",
+      "url": "https://github.com",
+      "publishedAt": "2026-05-24T14:30:00Z",
+      "author": "Ana García"
+    }
+  ]
+}
