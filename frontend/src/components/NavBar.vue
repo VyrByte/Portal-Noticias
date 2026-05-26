@@ -4,7 +4,7 @@
       <!-- Logo -->
       <router-link to="/" class="navbar-logo" id="nav-logo">
         <span class="logo-icon">📰</span>
-        <span class="logo-text">Portal<span class="logo-accent">Noticias</span></span>
+        <span class="logo-text">EL PORTAL DE NOTICIAS</span>
       </router-link>
 
       <!-- Links de navegación (desktop) -->
@@ -143,17 +143,17 @@ export default {
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(9, 9, 15, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-muted);
+  transition: all 0.25s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(9, 9, 15, 0.92);
+  background: rgba(255, 255, 255, 0.98);
   border-bottom-color: var(--border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-inner {
@@ -176,25 +176,22 @@ export default {
 }
 
 .logo-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 .logo-text {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1.15rem;
   font-weight: 800;
   color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-.logo-accent {
-  color: var(--accent);
+  letter-spacing: 0.02em;
 }
 
 /* Nav links */
 .navbar-links {
   display: flex;
   list-style: none;
-  gap: 0.25rem;
+  gap: 0.5rem;
   flex: 1;
 }
 
@@ -202,12 +199,14 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   transition: all var(--transition);
   position: relative;
 }
@@ -219,17 +218,20 @@ export default {
 
 .nav-link--active,
 .nav-link--exact {
-  color: var(--accent) !important;
-  background: rgba(124, 107, 255, 0.1);
+  color: var(--text) !important;
+  background: transparent;
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 4px !important;
 }
 
 .nav-badge {
-  background: var(--accent);
-  color: white;
-  font-size: 0.7rem;
+  background: var(--text);
+  color: #ffffff;
+  font-size: 0.65rem;
   font-weight: 700;
-  padding: 0.1rem 0.45rem;
-  border-radius: 999px;
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
   min-width: 18px;
   text-align: center;
 }
@@ -252,7 +254,7 @@ export default {
   flex-direction: column;
   gap: 5px;
   background: none;
-  border: none;
+  border: 1px solid var(--border-muted);
   cursor: pointer;
   padding: 8px;
   border-radius: var(--radius-sm);
@@ -260,31 +262,34 @@ export default {
 
 .hamburger span {
   display: block;
-  width: 22px;
+  width: 20px;
   height: 2px;
   background: var(--text);
-  border-radius: 2px;
+  border-radius: 0;
   transition: all var(--transition);
 }
 
 /* Menú móvil */
 .mobile-menu {
   border-top: 1px solid var(--border);
-  background: rgba(9, 9, 15, 0.97);
+  background: rgba(255, 255, 255, 0.98);
   padding: 1rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .mobile-nav-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.85rem 1rem;
-  border-radius: var(--radius-md);
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
   text-decoration: none;
   transition: all var(--transition);
 }
@@ -296,23 +301,24 @@ export default {
 }
 
 .mobile-nav-create {
-  background: linear-gradient(135deg, var(--accent), #9580ff);
+  background: var(--accent) !important;
   color: white !important;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0.5rem;
+  border-radius: var(--radius-sm);
 }
 
 /* Transiciones menú móvil */
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .mobile-menu-enter-from,
 .mobile-menu-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 
 /* Responsive */
