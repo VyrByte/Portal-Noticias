@@ -1,0 +1,11 @@
+{
+  "name": "portal-noticias",
+  "version": "1.0.0",
+  "description": "Portal de Noticias - Proyecto Final PP",
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "backend": "cd backend && npm start",
+    "dev": "start cmd /k \"cd backend && npm start\" && cd frontend && npm run dev",
+    "install:all": "cd frontend && npm install && cd ../backend && npm install"
+  }
+}
