@@ -12,37 +12,37 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
-    meta: { title: 'Inicio — Portal de Noticias' }
+    meta: { title: 'Inicio — Noticias Wicho' }
   },
   {
     path: '/news/:id',
     name: 'detail',
     component: DetailView,
-    meta: { title: 'Detalle — Portal de Noticias' }
+    meta: { title: 'Detalle — Noticias Wicho' }
   },
   {
     path: '/search',
     name: 'search',
     component: SearchView,
-    meta: { title: 'Buscar — Portal de Noticias' }
+    meta: { title: 'Buscar — Noticias Wicho' }
   },
   {
     path: '/favorites',
     name: 'favorites',
     component: FavoritesView,
-    meta: { title: 'Favoritos — Portal de Noticias' }
+    meta: { title: 'Favoritos — Noticias Wicho' }
   },
   {
     path: '/create',
     name: 'create',
     component: CreateView,
-    meta: { title: 'Crear Noticia — Portal de Noticias' }
+    meta: { title: 'Crear Noticia — Noticias Wicho' }
   },
   {
     path: '/edit/:id',
     name: 'edit',
     component: CreateView,
-    meta: { title: 'Editar Noticia — Portal de Noticias' }
+    meta: { title: 'Editar Noticia — Noticias Wicho' }
   },
   {
     // Redirige cualquier ruta desconocida al inicio
