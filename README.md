@@ -1,6 +1,6 @@
-# Portal de Noticias — Proyecto Final
+# Noticias Wicho — Proyecto Final
 
-Un Portal de Noticias completo e interactivo desarrollado como proyecto final de la materia Programación Profesional. El proyecto cuenta con un diseño editorial de alta gama en formato blanco y negro (estilo periódico tradicional *The New York Times*) y está implementado con Vue 3 para el cliente y JSON Server para el backend.
+Un portal de noticias completo e interactivo bajo la marca **Noticias Wicho**, desarrollado como proyecto final de la materia Programación Profesional. El proyecto cuenta con un diseño editorial de alta gama en formato blanco y negro (estilo periódico tradicional *The New York Times*) y está implementado con Vue 3 para el cliente y JSON Server para el backend.
 
 Tanto el FrontEnd como el BackEnd comparten el mismo lenguaje de desarrollo (JavaScript).
 
@@ -57,7 +57,7 @@ El portal cuenta con un diseño impecable, sobrio y altamente profesional:
 ## Estructura del Repositorio
 
 ```text
-portal-noticias/
+noticias-wicho/
 ├── backend/
 │   ├── db.json              (Base de datos simulada en JSON Server)
 │   ├── package.json         (Configuración y dependencias del backend)
