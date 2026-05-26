@@ -3,7 +3,10 @@
     <div class="navbar-inner">
       <!-- Logo -->
       <router-link to="/" class="navbar-logo" id="nav-logo">
-        <span class="logo-icon">📰</span>
+        <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+          <path d="M18 14h-8M18 18h-8M16 6H10v4h6V6Z"/>
+        </svg>
         <span class="logo-text">EL PORTAL DE NOTICIAS</span>
       </router-link>
 
@@ -17,7 +20,15 @@
             active-class="nav-link--active"
             exact-active-class="nav-link--exact"
           >
-            <span class="nav-icon">{{ link.icon }}</span>
+            <!-- Icono Home SVG -->
+            <svg v-if="link.name === 'home'" class="nav-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <!-- Icono Favoritos SVG -->
+            <svg v-if="link.name === 'favorites'" class="nav-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
             <span>{{ link.label }}</span>
             <!-- Badge de favoritos -->
             <span
@@ -33,10 +44,18 @@
       <!-- Acciones (búsqueda + crear) -->
       <div class="navbar-actions">
         <router-link to="/search" class="btn btn-ghost btn-sm nav-search-btn" id="nav-search-btn">
-          🔍 Buscar
+          <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Buscar
         </router-link>
         <router-link to="/create" class="btn btn-primary btn-sm" id="nav-create-btn">
-          ✏️ Crear
+          <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          Crear
         </router-link>
         <!-- Botón menú móvil -->
         <button
@@ -65,17 +84,31 @@
           active-class="mobile-nav-link--active"
           @click="closeMobileMenu"
         >
-          <span>{{ link.icon }}</span>
+          <svg v-if="link.name === 'home'" class="nav-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <svg v-if="link.name === 'favorites'" class="nav-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
           <span>{{ link.label }}</span>
           <span v-if="link.name === 'favorites' && totalFavorites > 0" class="nav-badge">
             {{ totalFavorites }}
           </span>
         </router-link>
         <router-link to="/search" class="mobile-nav-link" @click="closeMobileMenu">
-          🔍 Buscar
+          <svg class="nav-btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          Buscar
         </router-link>
         <router-link to="/create" class="mobile-nav-link mobile-nav-create" @click="closeMobileMenu">
-          ✏️ Nueva Noticia
+          <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white;">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          Nueva Noticia
         </router-link>
       </div>
     </transition>
@@ -94,8 +127,8 @@ export default {
       isMobileMenuOpen: false,
       isMobile: false,
       navLinks: [
-        { name: 'home',      path: '/',          icon: '🏠', label: 'Inicio' },
-        { name: 'favorites', path: '/favorites', icon: '⭐', label: 'Favoritos' }
+        { name: 'home',      path: '/',          label: 'Inicio' },
+        { name: 'favorites', path: '/favorites', label: 'Favoritos' }
       ]
     }
   },
@@ -176,7 +209,7 @@ export default {
 }
 
 .logo-icon {
-  font-size: 1.4rem;
+  color: var(--text);
 }
 
 .logo-text {
@@ -223,6 +256,15 @@ export default {
   text-decoration: underline !important;
   text-decoration-thickness: 2px !important;
   text-underline-offset: 4px !important;
+}
+
+.nav-btn-icon {
+  stroke-width: 2px;
+}
+
+.btn-svg-icon {
+  margin-right: 0.25rem;
+  stroke-width: 2px;
 }
 
 .nav-badge {
