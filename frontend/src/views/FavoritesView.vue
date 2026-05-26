@@ -3,7 +3,12 @@
     <!-- Header -->
     <header class="fav-header">
       <div>
-        <h1 class="fav-title">⭐ Mis Favoritos</h1>
+        <h1 class="fav-title">
+          <svg class="header-svg-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          Mis Favoritos
+        </h1>
         <p class="fav-subtitle">
           {{ favorites.length > 0
             ? `${favorites.length} noticia${favorites.length !== 1 ? 's' : ''} guardada${favorites.length !== 1 ? 's' : ''}`
@@ -11,7 +16,11 @@
         </p>
       </div>
       <router-link to="/create" class="btn btn-primary" id="fav-create-btn">
-        ✏️ Nueva Noticia
+        <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke: white; margin-right: 0.25rem;">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+        </svg>
+        Nueva Noticia
       </router-link>
     </header>
 
@@ -81,7 +90,11 @@
               @click.stop="openEdit(fav)"
               title="Editar"
             >
-              ✏️ Editar
+              <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.2rem;">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+              </svg>
+              Editar
             </button>
             <button
               class="btn btn-danger btn-sm"
@@ -89,7 +102,13 @@
               @click.stop="confirmDelete(fav)"
               title="Eliminar"
             >
-              🗑️ Eliminar
+              <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.2rem;">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 0-2 2v2"/>
+                <line x1="10" y1="11" x2="10" y2="17"/>
+                <line x1="14" y1="11" x2="14" y2="17"/>
+              </svg>
+              Eliminar
             </button>
           </div>
         </div>
@@ -97,7 +116,10 @@
 
       <!-- Sin resultados del filtro -->
       <div v-else class="empty-search">
-        <span>🔍</span>
+        <svg class="empty-svg-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
         <p>Ningún favorito coincide con "{{ searchQuery }}"</p>
         <button class="btn btn-ghost btn-sm" @click="searchQuery = ''">Ver todos</button>
       </div>
@@ -106,18 +128,31 @@
     <!-- Estado vacío -->
     <div v-else class="empty-favorites">
       <div class="empty-fav-content">
-        <span class="empty-icon">📭</span>
+        <span class="empty-icon">
+          <svg class="empty-svg-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+            <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+          </svg>
+        </span>
         <h2 class="empty-title">Sin favoritos aún</h2>
         <p class="empty-desc">
-          Guarda las noticias que más te interesen presionando la estrella (☆) en cualquier noticia,
+          Guarda las noticias que más te interesen presionando la estrella en cualquier noticia,
           o crea tus propias noticias aquí.
         </p>
         <div class="empty-actions">
           <router-link to="/" class="btn btn-primary" id="go-home-btn">
-            📰 Ver noticias
+            <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: white; margin-right: 0.25rem;">
+              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+              <path d="M18 14h-8M18 18h-8M16 6H10v4h6V6Z"/>
+            </svg>
+            Ver noticias
           </router-link>
           <router-link to="/create" class="btn btn-secondary" id="go-create-btn">
-            ✏️ Crear noticia
+            <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+            </svg>
+            Crear noticia
           </router-link>
         </div>
       </div>
@@ -127,7 +162,14 @@
     <transition name="modal">
       <div v-if="deleteModal.show" class="modal-backdrop" id="delete-modal" @click.self="closeDeleteModal">
         <div class="modal-card">
-          <div class="modal-icon">🗑️</div>
+          <div class="modal-icon">
+            <svg class="modal-svg-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 0-2 2v2"/>
+              <line x1="10" y1="11" x2="10" y2="17"/>
+              <line x1="14" y1="11" x2="14" y2="17"/>
+            </svg>
+          </div>
           <h3 class="modal-title">¿Eliminar favorito?</h3>
           <p class="modal-desc">
             Se eliminará "<strong>{{ deleteModal.item?.title }}</strong>" de tus favoritos.
@@ -143,7 +185,17 @@
               @click="executeDelete"
               :disabled="deleting"
             >
-              {{ deleting ? '⏳ Eliminando...' : '🗑️ Eliminar' }}
+              <svg v-if="deleting" class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;">
+                <path d="M23 4v6h-6"/>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+              </svg>
+              <svg v-else class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.25rem;">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 0-2 2v2"/>
+                <line x1="10" y1="11" x2="10" y2="17"/>
+                <line x1="14" y1="11" x2="14" y2="17"/>
+              </svg>
+              {{ deleting ? 'Eliminando...' : 'Eliminar' }}
             </button>
           </div>
         </div>
@@ -173,6 +225,7 @@ export default {
   data() {
     return {
       searchQuery: '',
+      deleteModal: { show: true, item: null }, // Modal logic remains
       deleteModal: { show: false, item: null },
       deleting: false,
       toast: { show: false, message: '', type: 'success' },
@@ -278,6 +331,13 @@ export default {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-svg-icon {
+  color: var(--text);
 }
 
 .fav-subtitle {
@@ -394,6 +454,10 @@ export default {
   justify-content: center;
 }
 
+.btn-svg-icon {
+  stroke-width: 2px;
+}
+
 /* Empty search */
 .empty-search {
   text-align: center;
@@ -406,7 +470,9 @@ export default {
   font-size: 0.95rem;
 }
 
-.empty-search span { font-size: 2rem; }
+.empty-svg-icon {
+  stroke-width: 1.5px;
+}
 
 /* Empty state */
 .empty-favorites {
@@ -421,7 +487,7 @@ export default {
   max-width: 480px;
 }
 
-.empty-icon { font-size: 4rem; display: block; margin-bottom: 1.25rem; }
+.empty-icon { display: block; margin-bottom: 1.25rem; }
 .empty-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; margin-bottom: 0.75rem; }
 .empty-desc { color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
 
@@ -456,7 +522,8 @@ export default {
   box-shadow: var(--shadow-md);
 }
 
-.modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.modal-icon { margin-bottom: 1rem; color: var(--text); }
+.modal-svg-icon { stroke-width: 1.5px; }
 .modal-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
 .modal-desc { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.75rem; line-height: 1.6; }
 
