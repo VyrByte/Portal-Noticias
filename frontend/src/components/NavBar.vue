@@ -7,7 +7,7 @@
           <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
           <path d="M18 14h-8M18 18h-8M16 6H10v4h6V6Z"/>
         </svg>
-        <span class="logo-text">EL PORTAL DE NOTICIAS</span>
+        <span class="logo-text">NOTICIAS WICHO</span>
       </router-link>
 
       <!-- Links de navegación (desktop) -->
