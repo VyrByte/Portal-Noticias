@@ -180,7 +180,6 @@ export default {
   emits: ['submit', 'cancel'],
 
   data() {
-    // Desestructuración para inicializar el formulario con datos existentes
     const { title = '', description = '', content = '', category = '',
       author = '', image = '', url = '', source = '' } = this.initialData || {}
 
@@ -228,7 +227,6 @@ export default {
   methods: {
     validateField(field) {
       const { form } = this
-      // Spread para copiar errores actuales
       const errs = { ...this.errors }
       delete errs[field]
 
@@ -277,7 +275,6 @@ export default {
     handleSubmit() {
       if (!this.validateAll()) return
 
-      // Rest: extrae todos los campos del form
       const { ...formData } = this.form
       this.$emit('submit', {
         ...formData,
@@ -317,18 +314,19 @@ export default {
   font-size: 0.78rem;
   color: var(--text-muted);
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .char-count--warn {
-  color: #ff6b4a;
+  color: #c53030;
 }
 
 /* Image preview */
 .image-preview {
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   height: 200px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-muted);
 }
 
 .preview-img {
@@ -343,7 +341,7 @@ export default {
   justify-content: flex-end;
   gap: 0.75rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-muted);
 }
 
 @media (max-width: 600px) {
