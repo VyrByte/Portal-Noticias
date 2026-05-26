@@ -2,7 +2,13 @@
   <div class="page">
     <!-- Hero Header -->
     <header class="home-hero">
-      <div class="hero-badge">📡 En vivo</div>
+      <div class="hero-badge">
+        <svg class="live-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="2"/>
+          <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
+        </svg>
+        En vivo
+      </div>
       <h1 class="hero-title">
         Las noticias que
         <span class="hero-title-accent">importan hoy</span>
@@ -55,7 +61,11 @@
       <!-- Grid de noticias -->
       <section class="news-section" aria-label="Lista de noticias">
         <h2 class="section-title">
-          📰 Más noticias
+          <svg class="title-svg-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+            <path d="M18 14h-8M18 18h-8M16 6H10v4h6V6Z"/>
+          </svg>
+          Más noticias
           <span class="section-count">{{ restArticles.length }}</span>
         </h2>
 
@@ -70,7 +80,10 @@
         </div>
 
         <div v-else class="empty-state">
-          <span>📭</span>
+          <svg class="empty-svg-icon" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/>
+            <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+          </svg>
           <p>No hay más noticias en esta categoría.</p>
         </div>
       </section>
@@ -159,7 +172,7 @@ export default {
             ...article,
             source: typeof article.source === 'object' ? article.source.name : article.source
           })
-          this.showToast('¡Agregado a favoritos! ⭐', 'success')
+          this.showToast('Agregado a favoritos', 'success')
         }
       } catch {
         this.showToast('Error al actualizar favoritos', 'error')
@@ -196,6 +209,11 @@ export default {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 1rem;
+}
+
+.live-svg-icon {
+  stroke-width: 2.5px;
+  vertical-align: middle;
 }
 
 .hero-title {
@@ -267,9 +285,13 @@ export default {
   margin-bottom: 1.25rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+}
+
+.title-svg-icon {
+  stroke-width: 2px;
 }
 
 .section-count {
@@ -294,8 +316,9 @@ export default {
   gap: 0.75rem;
 }
 
-.empty-state span {
-  font-size: 2.5rem;
+.empty-svg-icon {
+  color: var(--text-muted);
+  stroke-width: 1.5;
 }
 
 /* Toast monocromático clásico */
