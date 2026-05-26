@@ -58,7 +58,6 @@
                 :alt="fav.title"
                 @error="e => e.target.src = fallback"
               />
-              <div class="fav-card-overlay"></div>
               <span :class="['badge', `badge-${fav.category || 'general'}`]" class="fav-badge">
                 {{ categoryLabel(fav.category) }}
               </span>
@@ -151,7 +150,7 @@
       </div>
     </transition>
 
-    <!-- Toast -->
+    <!-- Toast monocromático clásico -->
     <transition name="toast">
       <div v-if="toast.show" class="toast" :class="`toast--${toast.type}`" id="fav-toast">
         {{ toast.message }}
@@ -272,10 +271,11 @@ export default {
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
-  animation: fadeInUp 0.5s ease;
+  animation: fadeInUp 0.4s ease;
 }
 
 .fav-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   margin-bottom: 0.3rem;
 }
@@ -295,13 +295,13 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0;
-  animation: fadeInUp 0.5s ease both;
+  animation: fadeInUp 0.4s ease both;
 }
 
 .fav-card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   overflow: hidden;
   cursor: pointer;
   transition: all var(--transition);
@@ -309,14 +309,21 @@ export default {
 }
 
 .fav-card:hover {
-  border-color: rgba(124, 107, 255, 0.3);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.fav-card:hover .fav-card-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 
 .fav-card-image {
   position: relative;
   height: 180px;
   overflow: hidden;
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .fav-card-image img {
@@ -324,16 +331,6 @@ export default {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-}
-
-.fav-card:hover .fav-card-image img {
-  transform: scale(1.05);
-}
-
-.fav-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(9,9,15,0.8) 0%, transparent 60%);
 }
 
 .fav-badge {
@@ -349,19 +346,22 @@ export default {
 .fav-card-meta {
   display: flex;
   gap: 0.4rem;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
 .fav-source {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .fav-dot { color: var(--text-muted); }
 
 .fav-card-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.3;
@@ -382,11 +382,11 @@ export default {
 .fav-actions {
   display: flex;
   gap: 0.5rem;
-  padding: 0.75rem;
+  padding: 0.6rem;
   background: var(--surface-2);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-muted);
   border-top: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
 .fav-actions .btn {
@@ -403,7 +403,7 @@ export default {
   align-items: center;
   gap: 0.75rem;
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .empty-search span { font-size: 2rem; }
@@ -413,7 +413,7 @@ export default {
   display: flex;
   justify-content: center;
   padding: 4rem 1rem;
-  animation: fadeInUp 0.5s ease;
+  animation: fadeInUp 0.4s ease;
 }
 
 .empty-fav-content {
@@ -422,8 +422,8 @@ export default {
 }
 
 .empty-icon { font-size: 4rem; display: block; margin-bottom: 1.25rem; }
-.empty-title { font-size: 1.6rem; margin-bottom: 0.75rem; }
-.empty-desc { color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; }
+.empty-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.6rem; margin-bottom: 0.75rem; }
+.empty-desc { color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
 
 .empty-actions {
   display: flex;
@@ -436,8 +436,8 @@ export default {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -446,19 +446,19 @@ export default {
 }
 
 .modal-card {
-  background: var(--surface-2);
+  background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-sm);
   padding: 2.5rem;
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-.modal-title { font-size: 1.3rem; margin-bottom: 0.75rem; }
-.modal-desc { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.75rem; line-height: 1.6; }
+.modal-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.3rem; margin-bottom: 0.75rem; }
+.modal-desc { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.75rem; line-height: 1.6; }
 
 .modal-actions {
   display: flex;
@@ -467,19 +467,32 @@ export default {
 }
 
 /* Modal transition */
-.modal-enter-active, .modal-leave-active { transition: all 0.25s ease; }
-.modal-enter-from, .modal-leave-to { opacity: 0; transform: scale(0.92); }
+.modal-enter-active, .modal-leave-active { transition: all 0.2s ease; }
+.modal-enter-from, .modal-leave-to { opacity: 0; transform: scale(0.95); }
 
-/* Toast */
+/* Toast monocromático clásico */
 .toast {
-  position: fixed; bottom: 2rem; right: 2rem;
-  padding: 0.85rem 1.5rem; border-radius: var(--radius-md);
-  font-weight: 600; font-size: 0.9rem; z-index: 9999;
-  box-shadow: var(--shadow-lg);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  z-index: 9999;
+  box-shadow: var(--shadow-md);
+  background: #ffffff;
+  color: var(--text);
 }
-.toast--success { background: linear-gradient(135deg, #00d4a8, #00b894); color: white; }
-.toast--info    { background: linear-gradient(135deg, var(--accent), #9580ff); color: white; }
-.toast--error   { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
-.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
-.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(12px); }
+
+.toast--error {
+  color: #c53030;
+  border-color: #c53030;
+}
+
+.toast-enter-active, .toast-leave-active { transition: all 0.2s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(8px); }
 </style>
