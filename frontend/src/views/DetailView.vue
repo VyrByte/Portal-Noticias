@@ -27,12 +27,22 @@
           <!-- Meta -->
           <div class="detail-meta">
             <span class="detail-source">
-              📰 {{ article.source?.name || article.source || 'Desconocido' }}
+              <svg class="meta-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                <path d="M18 14h-8M18 18h-8M16 6H10v4h6V6Z"/>
+              </svg>
+              {{ article.source?.name || article.source || 'Desconocido' }}
             </span>
             <span class="detail-dot">·</span>
             <time class="detail-time">{{ formattedDate }}</time>
             <span v-if="article.author" class="detail-dot">·</span>
-            <span v-if="article.author" class="detail-author">✍️ {{ article.author }}</span>
+            <span v-if="article.author" class="detail-author">
+              <svg class="meta-svg-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+              </svg>
+              {{ article.author }}
+            </span>
           </div>
 
           <!-- Título -->
@@ -58,7 +68,13 @@
               @click="toggleFavorite"
               :disabled="favLoading"
             >
-              <span>{{ isFav ? '★ En favoritos' : '☆ Guardar en favoritos' }}</span>
+              <svg v-if="isFav" class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <svg v-else class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+              <span>{{ isFav ? 'En favoritos' : 'Guardar en favoritos' }}</span>
             </button>
 
             <a
@@ -69,7 +85,11 @@
               class="btn btn-ghost"
               id="detail-source-link"
             >
-              🔗 Ver fuente original
+              <svg class="btn-svg-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+              Ver fuente original
             </a>
           </div>
         </div>
@@ -77,7 +97,12 @@
 
       <!-- Artículos relacionados -->
       <section class="related-section" v-if="relatedArticles.length > 0">
-        <h2 class="section-title">📎 Noticias relacionadas</h2>
+        <h2 class="section-title">
+          <svg class="title-svg-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+          </svg>
+          Noticias relacionadas
+        </h2>
         <div class="news-grid">
           <NewsCard
             v-for="(related, i) in relatedArticles"
@@ -93,7 +118,7 @@
     <!-- Sin artículo -->
     <ErrorMessage
       v-else
-      icon="📭"
+      icon="empty"
       title="Noticia no encontrada"
       message="No se pudo cargar el detalle de esta noticia."
       @retry="$router.push('/')"
@@ -199,7 +224,7 @@ export default {
               ? this.article.source.name
               : this.article.source
           })
-          this.showToast('¡Guardado en favoritos! ⭐', 'success')
+          this.showToast('Guardado en favoritos', 'success')
         }
       } catch {
         this.showToast('Error al actualizar favoritos', 'error')
@@ -289,11 +314,25 @@ export default {
 
 .detail-source {
   color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 .detail-dot { color: var(--text-muted); }
 .detail-time { color: var(--text-muted); }
-.detail-author { color: var(--text-muted); }
+
+.detail-author {
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.meta-svg-icon {
+  stroke-width: 2px;
+  vertical-align: middle;
+}
 
 .detail-title {
   font-family: 'Playfair Display', Georgia, serif;
@@ -334,6 +373,11 @@ export default {
   border-top: 1px dotted var(--border-muted);
 }
 
+.btn-svg-icon {
+  margin-right: 0.25rem;
+  stroke-width: 2px;
+}
+
 /* Related */
 .related-section {
   animation: fadeInUp 0.4s 0.1s ease both;
@@ -350,6 +394,13 @@ export default {
   margin-bottom: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.title-svg-icon {
+  stroke-width: 2px;
 }
 
 /* Toast monocromático clásico */
