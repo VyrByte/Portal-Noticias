@@ -51,10 +51,13 @@ export default {
 <style scoped>
 .category-filter {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0;
   scrollbar-width: none;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
 }
 
 .category-filter::-webkit-scrollbar {
@@ -65,14 +68,16 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 1.1rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.8rem;
+  font-weight: 700;
   font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   cursor: pointer;
   transition: all var(--transition);
   white-space: nowrap;
@@ -80,19 +85,17 @@ export default {
 }
 
 .cat-btn:hover {
-  background: var(--surface-3);
+  background: var(--surface-2);
   color: var(--text);
-  border-color: var(--border-hover);
 }
 
 .cat-btn--active {
-  background: linear-gradient(135deg, var(--accent), #9580ff);
-  border-color: var(--accent);
-  color: white;
-  box-shadow: 0 4px 16px var(--accent-glow);
+  background: var(--text) !important;
+  color: #ffffff !important;
+  border-color: var(--text) !important;
 }
 
 .cat-emoji {
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 </style>
