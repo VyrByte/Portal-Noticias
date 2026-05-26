@@ -15,8 +15,6 @@
             class="detail-image"
             @error="e => e.target.src = fallback"
           />
-          <div class="detail-image-gradient"></div>
-
           <!-- Metadata sobre imagen -->
           <div class="detail-overlay-meta">
             <span :class="['badge', `badge-${article.category || 'general'}`]">
@@ -43,7 +41,7 @@
           <!-- Descripción -->
           <p class="detail-description">{{ article.description }}</p>
 
-          <!-- Divisor -->
+          <!-- Divisor de Diario Tradicional (Doble Línea) -->
           <div class="detail-divider"></div>
 
           <!-- Contenido -->
@@ -60,7 +58,7 @@
               @click="toggleFavorite"
               :disabled="favLoading"
             >
-              <span>{{ isFav ? '⭐ En favoritos' : '☆ Guardar en favoritos' }}</span>
+              <span>{{ isFav ? '★ En favoritos' : '☆ Guardar en favoritos' }}</span>
             </button>
 
             <a
@@ -105,7 +103,7 @@
       </template>
     </ErrorMessage>
 
-    <!-- Toast -->
+    <!-- Toast monocromático clásico -->
     <transition name="toast">
       <div v-if="toast.show" class="toast" :class="`toast--${toast.type}`" id="detail-toast">
         {{ toast.message }}
@@ -158,7 +156,6 @@ export default {
 
     relatedArticles() {
       if (!this.article) return []
-      // Filtra noticias de la misma categoría, excluye la actual
       return this.news
         .filter(({ id, category }) => id !== this.article.id && category === this.article.category)
         .slice(0, 3)
@@ -173,7 +170,6 @@ export default {
     ...mapActions(['addFavorite', 'removeFavorite', 'fetchFavorites']),
 
     loadArticle() {
-      // Intenta cargar desde sessionStorage (guardado por NewsCard)
       const stored = sessionStorage.getItem('currentArticle')
       if (stored) {
         try {
@@ -181,7 +177,6 @@ export default {
           return
         } catch { /* continúa */ }
       }
-      // Fallback: busca en el store por ID
       const { id } = this.$route.params
       this.article = this.news.find(a => String(a.id) === String(id)) || null
     },
@@ -198,7 +193,6 @@ export default {
             this.showToast('Quitado de favoritos', 'info')
           }
         } else {
-          // Spread para normalizar la fuente
           await this.addFavorite({
             ...this.article,
             source: typeof this.article.source === 'object'
@@ -248,16 +242,17 @@ export default {
 /* Hero de detalle */
 .detail-hero {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   margin-bottom: 3rem;
-  animation: fadeInUp 0.5s ease;
+  animation: fadeInUp 0.4s ease;
 }
 
 .detail-image-wrapper {
   position: relative;
   height: 420px;
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .detail-image {
@@ -266,21 +261,18 @@ export default {
   object-fit: cover;
 }
 
-.detail-image-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--surface-1) 0%, rgba(9,9,15,0.3) 60%, transparent 100%);
-}
-
 .detail-overlay-meta {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
+  z-index: 10;
 }
 
 /* Content */
 .detail-content {
   padding: 2rem 2.5rem 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .detail-meta {
@@ -288,78 +280,106 @@ export default {
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   margin-bottom: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .detail-source {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--text);
 }
 
 .detail-dot { color: var(--text-muted); }
 .detail-time { color: var(--text-muted); }
-.detail-author { color: var(--text-secondary); }
+.detail-author { color: var(--text-muted); }
 
 .detail-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  line-height: 1.2;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  line-height: 1.15;
   margin-bottom: 1.25rem;
   color: var(--text);
 }
 
 .detail-description {
-  font-size: 1.1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  line-height: 1.7;
+  line-height: 1.6;
   font-style: italic;
 }
 
 .detail-divider {
-  height: 1px;
-  background: var(--border);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  height: 4px;
+  background: transparent;
   margin: 2rem 0;
 }
 
 .detail-body {
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
-  line-height: 1.9;
-  margin-bottom: 2rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
 }
 
 .detail-actions {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  padding-top: 1.5rem;
+  border-top: 1px dotted var(--border-muted);
 }
 
 /* Related */
 .related-section {
-  animation: fadeInUp 0.5s 0.2s ease both;
+  animation: fadeInUp 0.4s 0.1s ease both;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  margin-top: 2rem;
 }
 
 .section-title {
-  font-size: 1.3rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
   margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-/* Toast */
+/* Toast monocromático clásico */
 .toast {
-  position: fixed; bottom: 2rem; right: 2rem;
-  padding: 0.85rem 1.5rem; border-radius: var(--radius-md);
-  font-weight: 600; font-size: 0.9rem; z-index: 9999;
-  box-shadow: var(--shadow-lg);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  z-index: 9999;
+  box-shadow: var(--shadow-md);
+  background: #ffffff;
+  color: var(--text);
 }
-.toast--success { background: linear-gradient(135deg, #00d4a8, #00b894); color: white; }
-.toast--info    { background: linear-gradient(135deg, var(--accent), #9580ff); color: white; }
-.toast--error   { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
-.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
-.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(12px); }
+
+.toast--error {
+  color: #c53030;
+  border-color: #c53030;
+}
+
+.toast-enter-active, .toast-leave-active { transition: all 0.2s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(8px); }
 
 @media (max-width: 768px) {
   .detail-image-wrapper { height: 260px; }
-  .detail-content { padding: 1.5rem; }
+  .detail-content { padding: 1.5rem 1rem; }
 }
 </style>
