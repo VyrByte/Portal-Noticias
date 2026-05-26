@@ -16,7 +16,7 @@
         <p class="create-subtitle">
           {{ isEditing
             ? 'Modifica los datos de tu noticia guardada'
-            : 'Crea y guarda tu propia noticia en el portal' }}
+            : 'Crea y guarda tu propia noticia en Noticias Wicho' }}
         </p>
       </div>
     </header>
