@@ -17,8 +17,7 @@
         loading="lazy"
         @error="onImageError"
       />
-      <div class="card-image-overlay"></div>
-
+      
       <!-- Badge de categoría sobre la imagen -->
       <span :class="['badge', `badge-${article.category || 'general'}`]" class="card-category">
         {{ categoryLabel }}
@@ -33,7 +32,7 @@
         :title="isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'"
         :aria-label="isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'"
       >
-        {{ isFav ? '⭐' : '☆' }}
+        {{ isFav ? '★' : '☆' }}
       </button>
     </div>
 
@@ -57,7 +56,7 @@
         <span class="card-author" v-if="article.author">
           ✍️ {{ article.author }}
         </span>
-        <span class="card-read-more">Leer más →</span>
+        <span class="card-read-more">Leer noticia →</span>
       </div>
     </div>
   </article>
@@ -132,7 +131,6 @@ export default {
 
   methods: {
     navigateToDetail() {
-      // Guarda el artículo en sessionStorage para que DetailView lo lea
       sessionStorage.setItem('currentArticle', JSON.stringify(this.article))
       this.$router.push({
         name: 'detail',
@@ -154,20 +152,25 @@ export default {
 <style scoped>
 .news-card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   cursor: pointer;
   transition: all var(--transition);
   display: flex;
   flex-direction: column;
-  animation: fadeInUp 0.5s ease forwards;
+  animation: fadeInUp 0.4s ease forwards;
 }
 
 .news-card:hover {
-  border-color: rgba(124, 107, 255, 0.3);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(124, 107, 255, 0.15);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.news-card:hover .card-title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
 
 .news-card:focus-visible {
@@ -180,34 +183,26 @@ export default {
   position: relative;
   height: 200px;
   overflow: hidden;
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .news-card--featured .card-image-wrapper {
-  height: 280px;
+  height: 300px;
 }
 
 .card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.news-card:hover .card-image {
-  transform: scale(1.06);
-}
-
-.card-image-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(9,9,15,0.8) 0%, transparent 50%);
+  transition: filter var(--transition);
 }
 
 /* Categoría badge */
 .card-category {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 10;
 }
 
 /* Botón favorito */
@@ -215,29 +210,29 @@ export default {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  background: rgba(9, 9, 15, 0.7);
-  backdrop-filter: blur(8px);
+  background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  z-index: 10;
   transition: all var(--transition);
+  color: var(--text);
 }
 
 .card-fav-btn:hover {
-  background: rgba(124, 107, 255, 0.3);
-  border-color: var(--accent);
-  transform: scale(1.1);
+  background: var(--surface-2);
+  transform: scale(1.05);
 }
 
 .card-fav-btn--active {
-  background: rgba(124, 107, 255, 0.2);
-  border-color: var(--accent);
+  background: var(--border) !important;
+  color: #ffffff !important;
 }
 
 /* Body */
@@ -245,7 +240,7 @@ export default {
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.5rem;
   flex: 1;
 }
 
@@ -253,12 +248,14 @@ export default {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
 }
 
 .card-source {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--text);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .card-dot {
@@ -270,10 +267,11 @@ export default {
 }
 
 .card-title {
-  font-size: 1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.35;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -281,13 +279,13 @@ export default {
 }
 
 .news-card--featured .card-title {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .card-desc {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.55;
   flex: 1;
 }
 
@@ -296,31 +294,25 @@ export default {
   align-items: center;
   justify-content: space-between;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
+  border-top: 1px dotted var(--border-muted);
+  margin-top: 0.5rem;
 }
 
 .card-author {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  truncate: ellipsis;
   overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 60%;
 }
 
 .card-read-more {
-  font-size: 0.82rem;
-  color: var(--accent);
+  font-size: 0.8rem;
+  color: var(--text-muted);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   flex-shrink: 0;
 }
-
-/* Delay de animación por índice */
-.news-card:nth-child(1) { animation-delay: 0.05s; }
-.news-card:nth-child(2) { animation-delay: 0.1s; }
-.news-card:nth-child(3) { animation-delay: 0.15s; }
-.news-card:nth-child(4) { animation-delay: 0.2s; }
-.news-card:nth-child(5) { animation-delay: 0.25s; }
-.news-card:nth-child(6) { animation-delay: 0.3s; }
 </style>
