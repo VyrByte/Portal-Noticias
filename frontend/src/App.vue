@@ -10,7 +10,7 @@
     </main>
     <footer class="app-footer">
       <div class="footer-inner">
-        <span class="footer-logo">📰 Portal de Noticias</span>
+        <span class="footer-logo">Noticias Wicho</span>
         <span class="footer-text">© 2026 — Proyecto Final Programación Profesional</span>
       </div>
     </footer>
