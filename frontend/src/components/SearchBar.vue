@@ -98,7 +98,6 @@ export default {
 
     handleInput() {
       this.$emit('update:modelValue', this.localQuery)
-      // Debounce: espera 400ms antes de disparar búsqueda
       clearTimeout(this.debounceTimer)
       this.debounceTimer = setTimeout(() => {
         this.$emit('search', this.localQuery)
@@ -118,7 +117,6 @@ export default {
     },
 
     handleBlur() {
-      // Pequeño delay para permitir click en dropdown
       setTimeout(() => { this.isFocused = false }, 150)
     },
 
@@ -146,21 +144,21 @@ export default {
   display: flex;
   align-items: center;
   background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 0 1.25rem;
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
+  padding: 0 1rem;
   gap: 0.75rem;
   transition: all var(--transition);
 }
 
 .search-input-container.focused {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-glow);
-  background: var(--surface-3);
+  border-color: var(--border);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 .search-icon {
-  font-size: 1rem;
+  font-size: 0.95rem;
   flex-shrink: 0;
   opacity: 0.6;
 }
@@ -171,9 +169,9 @@ export default {
   border: none;
   outline: none;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-family: 'Inter', sans-serif;
-  padding: 0.85rem 0;
+  padding: 0.75rem 0;
 }
 
 .search-input::placeholder {
@@ -183,12 +181,12 @@ export default {
 .search-clear-btn {
   background: var(--surface-3);
   border: none;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
-  font-size: 0.8rem;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
+  font-size: 0.75rem;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,36 +195,36 @@ export default {
 }
 
 .search-clear-btn:hover {
-  background: var(--accent);
+  background: var(--border);
   color: white;
 }
 
 /* Dropdown */
 .search-dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   left: 0;
   right: 0;
-  background: var(--surface-2);
+  background: #ffffff;
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   z-index: 100;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .dropdown-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border);
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .dropdown-title {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -234,48 +232,50 @@ export default {
 .dropdown-clear {
   background: none;
   border: none;
-  color: var(--accent);
-  font-size: 0.78rem;
+  color: var(--text);
+  font-size: 0.75rem;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   padding: 0;
 }
 
 .dropdown-clear:hover {
-  color: var(--accent-hover);
+  text-decoration: underline;
 }
 
 .recent-list {
   list-style: none;
-  padding: 0.5rem;
+  padding: 0.4rem;
 }
 
 .recent-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.75rem;
+  gap: 0.65rem;
+  padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all var(--transition);
 }
 
 .recent-item:hover {
-  background: var(--surface-3);
+  background: var(--surface-2);
   color: var(--text);
 }
 
 /* Transición dropdown */
 .dropdown-enter-active,
 .dropdown-leave-active {
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .dropdown-enter-from,
 .dropdown-leave-to {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 </style>
