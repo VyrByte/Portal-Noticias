@@ -74,7 +74,7 @@
       </aside>
     </div>
 
-    <!-- Toast -->
+    <!-- Toast monocromático clásico -->
     <transition name="toast">
       <div v-if="toast.show" class="toast" :class="`toast--${toast.type}`" id="create-toast">
         {{ toast.message }}
@@ -131,12 +131,10 @@ export default {
       this.loadingItem = true
       try {
         const { id } = this.$route.params
-        // Primero busca en el store (más rápido)
         const fromStore = this.favorites.find(f => String(f.id) === String(id))
         if (fromStore) {
           this.formInitialData = { ...fromStore }
         } else {
-          // Fallback: obtiene desde JSON Server
           this.formInitialData = await getFavoriteById(id)
         }
       } catch {
@@ -151,13 +149,11 @@ export default {
       this.submitting = true
       try {
         if (this.isEditing) {
-          // UPDATE: spread de datos existentes + nuevos datos del form
           const { id } = this.formInitialData
           await this.editFavorite({ id, ...formData })
           this.showToast('¡Noticia actualizada correctamente! ✅', 'success')
           setTimeout(() => this.$router.push('/favorites'), 1500)
         } else {
-          // CREATE: agrega nuevo favorito
           await this.addFavorite({ ...formData })
           this.showToast('¡Noticia guardada en favoritos! ⭐', 'success')
           setTimeout(() => this.$router.push('/favorites'), 1500)
@@ -205,6 +201,7 @@ export default {
 }
 
 .create-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 0.35rem;
 }
@@ -220,14 +217,14 @@ export default {
   grid-template-columns: 1fr 280px;
   gap: 1.5rem;
   align-items: start;
-  animation: fadeInUp 0.5s 0.1s ease both;
+  animation: fadeInUp 0.4s 0.1s ease both;
 }
 
 /* Card del formulario */
 .create-card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   padding: 2rem;
 }
 
@@ -235,7 +232,7 @@ export default {
 .form-step-indicator {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .step-info {
@@ -245,12 +242,12 @@ export default {
 }
 
 .step-icon {
-  font-size: 2rem;
-  background: rgba(124, 107, 255, 0.1);
-  border: 1px solid rgba(124, 107, 255, 0.2);
-  border-radius: var(--radius-md);
-  width: 52px;
-  height: 52px;
+  font-size: 1.5rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,11 +257,11 @@ export default {
 .step-title {
   font-weight: 700;
   color: var(--text);
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
 
 .step-desc {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
@@ -272,18 +269,19 @@ export default {
 /* Tips sidebar */
 .tips-card {
   background: var(--surface-1);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-muted);
+  border-radius: var(--radius-sm);
   padding: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .tips-card--alt {
-  background: rgba(124, 107, 255, 0.05);
-  border-color: rgba(124, 107, 255, 0.15);
+  background: var(--surface-2) !important;
+  border-color: var(--border-muted) !important;
 }
 
 .tips-title {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -298,7 +296,7 @@ export default {
 }
 
 .tip-item {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
   display: flex;
   gap: 0.6rem;
@@ -310,9 +308,9 @@ export default {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--text);
   flex-shrink: 0;
-  margin-top: 0.45rem;
+  margin-top: 0.4rem;
 }
 
 /* Info rows */
@@ -320,28 +318,42 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-muted);
 }
 
 .info-row:last-child { border-bottom: none; }
 
 .info-label { color: var(--text-muted); }
-.info-value { color: var(--text-secondary); font-weight: 500; }
+.info-value { color: var(--text-secondary); font-weight: 600; }
 
-/* Toast */
+/* Toast monocromático clásico */
 .toast {
-  position: fixed; bottom: 2rem; right: 2rem;
-  padding: 0.85rem 1.5rem; border-radius: var(--radius-md);
-  font-weight: 600; font-size: 0.9rem; z-index: 9999;
-  box-shadow: var(--shadow-lg); max-width: 380px;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  z-index: 9999;
+  box-shadow: var(--shadow-md);
+  background: #ffffff;
+  color: var(--text);
+  max-width: 380px;
 }
-.toast--success { background: linear-gradient(135deg, #00d4a8, #00b894); color: white; }
-.toast--info    { background: linear-gradient(135deg, var(--accent), #9580ff); color: white; }
-.toast--error   { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
-.toast-enter-active, .toast-leave-active { transition: all 0.3s ease; }
-.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(12px); }
+
+.toast--error {
+  color: #c53030;
+  border-color: #c53030;
+}
+
+.toast-enter-active, .toast-leave-active { transition: all 0.2s ease; }
+.toast-enter-from, .toast-leave-to { opacity: 0; transform: translateY(8px); }
 
 @media (max-width: 900px) {
   .create-container {
