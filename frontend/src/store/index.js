@@ -12,7 +12,7 @@ import {
 } from '@/utils/localStorage.js'
 
 // =============================================
-// VUEX STORE — Portal de Noticias
+// VUEX STORE — Noticias Wicho
 // state, mutations, actions, getters (ES6+)
 // =============================================
 
