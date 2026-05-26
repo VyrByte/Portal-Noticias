@@ -32,7 +32,12 @@
         :title="isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'"
         :aria-label="isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'"
       >
-        {{ isFav ? '★' : '☆' }}
+        <svg v-if="isFav" class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <svg v-else class="fav-icon-svg" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
       </button>
     </div>
 
@@ -54,7 +59,11 @@
       <!-- Footer -->
       <div class="card-footer">
         <span class="card-author" v-if="article.author">
-          ✍️ {{ article.author }}
+          <svg class="author-icon-svg" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+          </svg>
+          {{ article.author }}
         </span>
         <span class="card-read-more">Leer noticia →</span>
       </div>
@@ -219,10 +228,10 @@ export default {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 0.9rem;
   z-index: 10;
   transition: all var(--transition);
   color: var(--text);
+  padding: 0;
 }
 
 .card-fav-btn:hover {
@@ -233,6 +242,10 @@ export default {
 .card-fav-btn--active {
   background: var(--border) !important;
   color: #ffffff !important;
+}
+
+.fav-icon-svg {
+  stroke-width: 2px;
 }
 
 /* Body */
@@ -305,6 +318,13 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 60%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.author-icon-svg {
+  stroke-width: 2px;
 }
 
 .card-read-more {
